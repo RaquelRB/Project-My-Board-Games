@@ -1,6 +1,9 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
 
+.body-views {
+  margin: 40px; }
+
 a {
   color: #00B7FF; }
 
