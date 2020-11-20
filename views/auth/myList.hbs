@@ -1,9 +1,27 @@
 
 <h2>This is my board games list</h2>
 
-
+<div class="container">
+<div class="card mb-8" style="max-width: 1000px;">
+  <div class="row no-gutters">
 {{#each boardgames}}
+<div class="col-md-2">
+<img src="{{image_url}}" alt="{{name}}" class="card-img img-list">
+</div>
 
-<p>{{name}}</p>
+<div class="col-md-10">
+  <div class="card-body">
+    <h5 class="card-title">{{name}}</h5>
+    <p class="card-text">{{min_players}}</p>
+
+    <a href="/game-records/{{_id}}">View records</a>
+  
+</div>
+</div>
+
 
 {{/each}}
+
+</div>
+</div>
+</div>

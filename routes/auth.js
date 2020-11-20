@@ -80,5 +80,17 @@ router.post('/mylist', ensureLogin.ensureLoggedIn(), (req, res)=>{
   .catch((err)=>res.send(err))
 })
 
+router.get('/game-records/:_id', (req,res,next)=>{
+  const gameId= req.params._id
+  
+  BoardGame.findOne({_id: gameId})
+  .then((result)=>{
+    if(result.owner.toString() == req.user._id.toString()){
+      res.render('auth/gameRecords')
+    } else {
+      res.redirect('auth/myList')
+    }
+  })
+})
 
 module.exports = router;
