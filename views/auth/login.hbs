@@ -1,16 +1,21 @@
+
+<div class="container">
+<div class="row justify-content-center">
 <form action="/login" method="POST">
 
   <label for="username">Username: </label>
   <input type="text" id="username" name="username">
-
-
+<br>
   <label for="password">Password: </label>
   <input type="password" id="password" name="password">
-
-  <button type="submit">Log in</button>
+<br>
+  <button type="submit" class="btn btn-dark">Log in</button>
 
 {{#if errorMessage}}
 <p>{{errorMessage}}</p>
 {{/if}}
 
 </form>
+</div>
+</div>
+

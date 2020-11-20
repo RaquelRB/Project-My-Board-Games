@@ -48,15 +48,13 @@ router.post('/login', passport.authenticate("local", {
   passReqToCallback: true
 }))
 
-const checkForAuthentification = (req,res,next)=>{
-  if(req.isAuthenticated()){
-    return next()
-  } else {
-    res.redirect('/login')
-  }
-}
+router.get('/logout', (req,res)=>{
+  req.logout()
+  res.redirect('/')
+})
 
-router.get('/mylist', checkForAuthentification, (req, res)=>{
+
+router.get('/mylist', ensureLogin.ensureLoggedIn(), (req, res)=>{
 
   BoardGame.find({owner: req.user._id})
   .then((result)=>{
@@ -68,13 +66,13 @@ router.get('/mylist', checkForAuthentification, (req, res)=>{
 })
 
 
-router.post('/mylist', checkForAuthentification, (req, res)=>{
+router.post('/mylist', ensureLogin.ensureLoggedIn(), (req, res)=>{
   const {name, image_url, description, min_age, price, rules_url,id} = req.body
   const userId = req.user._id
 
   BoardGame.create({name, image_url, description, min_age, price, rules_url,id,owner: userId})
   .then((createdGame)=>{
-    User.updateOne({$push: {boardgames: createdGame._id}})
+    User.findByIdAndUpdate(userId, {$push: {boardgames: createdGame._id}})
     .then(()=>{
       res.redirect('/mylist')
     })
