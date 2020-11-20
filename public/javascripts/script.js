@@ -69,6 +69,14 @@ const renderGames = (game) => {
           cardText[5].innerHTML = "Game rules"
           document.getElementById('game-rules').href =uniqueGame.rules_url
 
+          document.getElementById('name').value = uniqueGame.name
+          document.getElementById('image_url').value = uniqueGame.image_url
+          document.getElementById('description').value = uniqueGame.description
+          document.getElementById('min_age').value = uniqueGame.min_age
+          document.getElementById('price').value = uniqueGame.price
+          document.getElementById('rules_url').value = uniqueGame.rules_url
+          document.getElementById('id').value = uniqueGame.id
+
         })
         .catch((err) => {
           console.log(err)

@@ -17,6 +17,18 @@
   <div class="row no-gutters">
     <div class="col-md-4">
       <img src="" class="card-img" alt="">
+      <form action="/mylist" method="POST">
+
+        <input type="hidden" name="name" id="name" value="">
+        <input type="hidden" name="image_url" id="image_url" value="">
+        <input type="hidden" name="description" id="description" value="">
+        {{!-- <input type="text" name="players" id="players" value=""> --}}
+        <input type="hidden" name="min_age" id="min_age" value="">
+        <input type="hidden" name="price" id="price" value="">
+        <input type="hidden" name="rules_url" id="rules_url" value="">
+        <input type="hidden" name="id" id="id" value="">
+        <button type="submit">Add to my list</button>
+      </form>
     </div>
     <div class="col-md-8">
       <div class="card-body">

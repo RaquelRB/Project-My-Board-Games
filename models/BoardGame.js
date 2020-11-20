@@ -1,22 +1,21 @@
-// const mongoose = require('mongoose')
-// const Schema = mongoose.Schema
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
-// const boardgameSchema = new Schema({
-//     name: {type: String},
-//     minplayers: {type: String},
-//     maxplayers: {type: String},
-//     minplaytime: {type: Date},
-//     maxplaytime: {type: Number},
-//     minage: {type: String},
-//     description: {type: String},
-//     image: {type: String},
-//     publisher: {type: String},
-//     categories: {type: String},
-//     mechanics: {type: String},
-//     rules_url: {type: String},         
-// })
+const boardgameSchema = new Schema({
+    name: {type: String},
+    image_url: {type: String},
+    description: {type: String},
+    // maxplayers: {type: String},
+    // minplaytime: {type: Date},
+    // maxplaytime: {type: Number},
+    min_age: {type: String},
+    price: {type: String},
+    rules_url: {type: String},
+    id: {type: String},
+    owner: {type: Schema.Types.ObjectId}         
+})
 
 
-// const BoardGame = mongoose.model('BoardGame', boardgameSchema)
+const BoardGame = mongoose.model('BoardGame', boardgameSchema)
 
-// module.exports = BoardGame
+module.exports = BoardGame

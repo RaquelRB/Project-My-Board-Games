@@ -3,6 +3,7 @@ const router = express.Router();
 const passport = require('passport')
 const bcrypt = require('bcrypt')
 const User = require('../models/User')
+const BoardGame = require('../models/BoardGame')
 const ensureLogin = require('connect-ensure-login');
 
 
@@ -48,8 +49,28 @@ router.post('/login', passport.authenticate("local", {
 }))
 
 router.get('/mylist', ensureLogin.ensureLoggedIn(), (req, res) => {
-  res.render('auth/myList', { user: req.user });
+  BoardGame.find({})
+  .then((boardgame)=>{
+    res.render('auth/myList', {user: req.user}, {boardgames: boardgame});
+  })
+  
 });
 
+router.post('/mylist', (req,res,next)=>{
+  const newBoardGame = req.body
+  console.log(req.body)
+  BoardGame.create(newBoardGame)
+  .then((createdGame)=>{
+    User.updateOne({$push: {boardgames: createdGame._id}})
+    .then((result)=>{
+      console.log(result)
+    })
+    res.redirect('/mylist')
+  })
+  .catch((err)=>{
+    res.redirect('/login')
+  })
+
+})
 
 module.exports = router;
