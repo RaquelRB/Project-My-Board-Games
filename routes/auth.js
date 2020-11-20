@@ -48,29 +48,39 @@ router.post('/login', passport.authenticate("local", {
   passReqToCallback: true
 }))
 
-router.get('/mylist', ensureLogin.ensureLoggedIn(), (req, res) => {
-  BoardGame.find({})
-  .then((boardgame)=>{
-    res.render('auth/myList', {user: req.user}, {boardgames: boardgame});
-  })
-  
-});
+const checkForAuthentification = (req,res,next)=>{
+  if(req.isAuthenticated()){
+    return next()
+  } else {
+    res.redirect('/login')
+  }
+}
 
-router.post('/mylist', (req,res,next)=>{
-  const newBoardGame = req.body
-  console.log(req.body)
-  BoardGame.create(newBoardGame)
-  .then((createdGame)=>{
-    User.updateOne({$push: {boardgames: createdGame._id}})
-    .then((result)=>{
-      console.log(result)
-    })
-    res.redirect('/mylist')
+router.get('/mylist', checkForAuthentification, (req, res)=>{
+
+  BoardGame.find({owner: req.user._id})
+  .then((result)=>{
+    res.render('auth/myList', {boardgames: result})
   })
   .catch((err)=>{
-    res.redirect('/login')
+    res.send(err)
   })
-
 })
+
+
+router.post('/mylist', checkForAuthentification, (req, res)=>{
+  const {name, image_url, description, min_age, price, rules_url,id} = req.body
+  const userId = req.user._id
+
+  BoardGame.create({name, image_url, description, min_age, price, rules_url,id,owner: userId})
+  .then((createdGame)=>{
+    User.updateOne({$push: {boardgames: createdGame._id}})
+    .then(()=>{
+      res.redirect('/mylist')
+    })
+  })
+  .catch((err)=>res.send(err))
+})
+
 
 module.exports = router;
