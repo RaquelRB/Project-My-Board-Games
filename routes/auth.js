@@ -66,7 +66,6 @@ router.get('/mylist', ensureLogin.ensureLoggedIn(), (req, res)=>{
   })
 })
 
-
 router.post('/mylist', ensureLogin.ensureLoggedIn(), (req, res)=>{
   const {name, image_url, description, min_age, price, rules_url,id} = req.body
   const userId = req.user._id
@@ -81,19 +80,16 @@ router.post('/mylist', ensureLogin.ensureLoggedIn(), (req, res)=>{
   .catch((err)=>res.send(err))
 })
 
-// router.get('/game-records/:_id', (req,res,next)=>{
-//   const gameId= req.params._id
-  
-//   BoardGame.findOne({_id: gameId})
-//   .then((result)=>{
-//     if(result.owner.toString() == req.user._id.toString()){
-//       res.render('auth/gameRecords')
-//     } else {
-//       res.redirect('auth/myList')
-//     }
-//   })
-// })
+router.post('/delete-game/:_id', (req,res,next)=>{
+  const idDelete = req.params._id
 
+  BoardGame.findByIdAndDelete(idDelete)
+  .then(()=>{
+    res.redirect('/mylist')
+  })
+  .catch((err)=> console.log(err))
+  
+})
 
 router.get('/game-records/:_id', (req,res,next)=>{
   const gameId= req.params._id
@@ -108,7 +104,6 @@ router.get('/game-records/:_id', (req,res,next)=>{
   })
   .catch((err)=>console.log(err))
 })
-
 
 router.post('/game-records/:_id', (req,res,next)=>{
 

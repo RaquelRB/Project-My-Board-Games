@@ -15,6 +15,9 @@
     <h5 class="card-title">{{name}}</h5>
     <p class="card-text">{{min_players}}</p>
 
+<form action="/delete-game/{{_id}}" method="POST">
+    <button type="submit">Delete</button>
+</form>
     <a href="/game-records/{{_id}}">View records</a>
   
 </div>
