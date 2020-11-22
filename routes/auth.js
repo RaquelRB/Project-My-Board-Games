@@ -100,10 +100,8 @@ router.get('/game-records/:_id', (req,res,next)=>{
   
   BoardGame.findOne({_id: gameId})
   .then((result)=>{
-
     if(result.owner.toString() == req.user._id.toString()){
-      console.log(`${result.records}`)
-      res.render('auth/gameRecords', {result})
+      res.render('auth/gameRecords', {records: result.records})
     } else {
       res.redirect('/myList')
     }
@@ -120,7 +118,6 @@ router.post('/game-records/:_id', (req,res,next)=>{
   .then((createdRecord)=>{
     BoardGame.findByIdAndUpdate(boardgames, {$push: {records: createdRecord}})
     .then((result)=>{
-      console.log(result)
       res.redirect(`/game-records/${boardgames}`)
     })
   })
