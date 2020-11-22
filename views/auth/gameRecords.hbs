@@ -1,2 +1,60 @@
-
+<div class="margin-top margin-left">
 <h2>My Game records</h2>
+
+<h3>New record</h3>
+<form action="/game-records/:_id" method="POST"> 
+ 
+    <label for="date">Date: </label>
+    <input type="text" name="date" id="date">
+<br>
+    <label for="player">Player names: </label>
+    <input type="text" name="player" id="player">
+<br>
+    <label for="winner">Winner: </label>
+    <input type="text" name="winner" id="winner">
+<br>
+    <label for="scores">Scores: </label>
+    <input type="text" name="scores" id="scores">
+<br>
+    <label for="attachedFile">Attached file: </label>
+    <input type="text" name="attachedFile" id="attachedFile">
+<br>
+    <input type="hidden" name="boardgames" id="boardgames" value="{{_id}}">
+<br>
+<button class="button is-primary" style="margin: 10px" type="submit">Create match record</button>    
+</form>
+
+{{!-- <div>
+    
+{{#each records}}
+
+{{date}}
+{{winner}}
+{{scores}}
+
+{{/each}}
+</div>
+
+</div> --}}
+
+
+<div class="card mb-8" style="max-width: 1000px;">
+  <div class="row no-gutters">
+{{#each records}}
+<div class="col-md-2">
+</div>
+
+<div class="col-md-10">
+  <div class="card-body">
+    <h5 class="card-title">{{date}}</h5>
+    <p class="card-text">{{scores}}</p>
+    <p class="card-text">{{winner}}</p>
+ 
+</div>
+</div>
+
+
+{{/each}}
+
+</div>
+</div>

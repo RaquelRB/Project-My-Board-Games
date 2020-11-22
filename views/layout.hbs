@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="/stylesheets/style.css" />
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top">
       <a class="navbar-brand" href="/">MyGeekboard</a>
       <button
         class="navbar-toggler"
@@ -32,20 +32,18 @@
           <a class="nav-item nav-link" href="/gamerecord">Game Record</a>
         </div>
       <div class="navbar-nav ml-auto">
-      <a class="nav-item nav-link" href="/signup">Sign up</a>
-      <a class="nav-item nav-link" href="/login">Log in</a>
-      <a class="nav-item nav-link" href="/logout">Log out</a>
+      <a class="nav-item nav-link" id="sign-up-button" href="/signup">Sign up</a>
+      <a class="nav-item nav-link" id="log-in-button" href="/login">Log in</a>
+      <a class="nav-item nav-link" id="log-out-button" href="/logout">Log out</a>
       </div>
 
       </div>
 
     </nav>
 
-<div class="body-views">
 
   {{{body}}}
 
-</div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>

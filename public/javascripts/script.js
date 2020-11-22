@@ -6,7 +6,7 @@ const renderGames = (game) => {
   const gameContainer = document.createElement('div')
   gameContainer.id = `${game.id}`
   gameContainer.classList.add('col')
-  document.querySelector('.row').append(gameContainer)
+  document.getElementById('all-games').append(gameContainer)
 
   // -----Create elements for each block-----
   const name = document.createElement('h3')
@@ -94,9 +94,11 @@ document.addEventListener('DOMContentLoaded', () => {
     axios.get(`${URL}search?client_id=HtEvNIGWc8`)
       .then((result) => {
         result.data.games.forEach((game) => {
-          renderGames(game)
+          
           const divUniqueGame = document.getElementById('unique-container')
           divUniqueGame.style.display = 'none'
+          renderGames(game)
+
         })
       })
       .catch((err) => {

@@ -4,6 +4,7 @@ const passport = require('passport')
 const bcrypt = require('bcrypt')
 const User = require('../models/User')
 const BoardGame = require('../models/BoardGame')
+const Record = require('../models/Records')
 const ensureLogin = require('connect-ensure-login');
 
 
@@ -27,7 +28,7 @@ router.post('/signup', (req, res, next) => {
           .then((hashedPassword) => {
             User.create({ username, password: hashedPassword })
               .then(() => {
-                res.redirect('/')
+                res.redirect('/login')
               })
           })
       } else {
@@ -80,17 +81,53 @@ router.post('/mylist', ensureLogin.ensureLoggedIn(), (req, res)=>{
   .catch((err)=>res.send(err))
 })
 
+// router.get('/game-records/:_id', (req,res,next)=>{
+//   const gameId= req.params._id
+  
+//   BoardGame.findOne({_id: gameId})
+//   .then((result)=>{
+//     if(result.owner.toString() == req.user._id.toString()){
+//       res.render('auth/gameRecords')
+//     } else {
+//       res.redirect('auth/myList')
+//     }
+//   })
+// })
+
+
 router.get('/game-records/:_id', (req,res,next)=>{
   const gameId= req.params._id
   
   BoardGame.findOne({_id: gameId})
   .then((result)=>{
+
     if(result.owner.toString() == req.user._id.toString()){
-      res.render('auth/gameRecords')
+      console.log(`${result.records}`)
+      res.render('auth/gameRecords', {result})
     } else {
-      res.redirect('auth/myList')
+      res.redirect('/myList')
     }
   })
+  .catch((err)=>console.log(err))
 })
+
+
+router.post('/game-records/:_id', (req,res,next)=>{
+
+  const {date, winner, scores, attachedFile, boardgames} = req.body
+
+  Record.create({date, winner, scores, attachedFile, boardgames})
+  .then((createdRecord)=>{
+    BoardGame.findByIdAndUpdate(boardgames, {$push: {records: createdRecord}})
+    .then((result)=>{
+      console.log(result)
+      res.redirect(`/game-records/${boardgames}`)
+    })
+  })
+  .catch((err)=>{
+    console.log(err)
+  })
+})
+
 
 module.exports = router;

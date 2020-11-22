@@ -17,7 +17,7 @@ const flash = require('connect-flash')
 
 
 mongoose
-  .connect(`mongodb+srv://${process.env.DBUSER}:${process.env.DBPASSWORD}@cluster0.fi4hb.mongodb.net/${process.env.DBNAME}?retryWrites=true&w=majority`, {useNewUrlParser: true, useUnifiedTopology: true})
+  .connect(`mongodb+srv://${process.env.DBUSER}:${process.env.DBPASSWORD}@cluster0.fi4hb.mongodb.net/${process.env.DBNAME}?retryWrites=true&w=majority`, {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })

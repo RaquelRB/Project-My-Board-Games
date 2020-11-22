@@ -12,7 +12,8 @@ const boardgameSchema = new Schema({
     price: {type: String},
     rules_url: {type: String},
     id: {type: String},
-    owner: {type: Schema.Types.ObjectId}         
+    owner: {type: Schema.Types.ObjectId},
+    records: {type: [Object]}        
 })
 
 

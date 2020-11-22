@@ -1,8 +1,8 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
 
-.body-views {
-  margin: 40px; }
+.find-nav {
+  margin-top: 50px; }
 
 a {
   color: #00B7FF; }
@@ -22,5 +22,11 @@ img {
 
 .img-list {
   width: 100px; }
+
+.margin-top {
+  margin-top: 80px; }
+
+.margin-left {
+  margin-left: 40px; }
 
 /*# sourceMappingURL=style.css.map */

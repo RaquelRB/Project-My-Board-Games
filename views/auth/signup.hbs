@@ -1,3 +1,6 @@
+
+<div class="container margin-top">
+<div class="row justify-content-center">
 <form action="/signup" method="POST">
 
   <label for="username">Username: </label>
@@ -8,8 +11,11 @@
   <input type="password" id="password" name="password">
 
   <button type="submit" class="btn btn-dark">Create user</button>
+  
 {{#if errorMessage}}
 <p>{{errorMessage}}</p>
 {{/if}}
 
 </form>
+</div>
+</div>
