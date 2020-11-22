@@ -97,7 +97,7 @@ router.get('/game-records/:_id', (req,res,next)=>{
   BoardGame.findOne({_id: gameId})
   .then((result)=>{
     if(result.owner.toString() == req.user._id.toString()){
-      res.render('auth/gameRecords', {records: result.records})
+      res.render('auth/gameRecords', {records: result.records, gameId: gameId})
     } else {
       res.redirect('/myList')
     }
@@ -107,19 +107,21 @@ router.get('/game-records/:_id', (req,res,next)=>{
 
 router.post('/game-records/:_id', (req,res,next)=>{
 
-  const {date, winner, scores, attachedFile, boardgames} = req.body
+  const {date, winner, scores, attachedFile, boardgame} = req.body
 
-  Record.create({date, winner, scores, attachedFile, boardgames})
+  Record.create({date, winner, scores, attachedFile, boardgame})
   .then((createdRecord)=>{
-    BoardGame.findByIdAndUpdate(boardgames, {$push: {records: createdRecord}})
+    BoardGame.findByIdAndUpdate(boardgame, {$push: {records: createdRecord}})
     .then((result)=>{
-      res.redirect(`/game-records/${boardgames}`)
+      res.redirect(`/game-records/${boardgame}`)
     })
   })
   .catch((err)=>{
     console.log(err)
   })
 })
+
+
 
 
 module.exports = router;

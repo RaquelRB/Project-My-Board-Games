@@ -7,7 +7,7 @@ const recordsSchema = new Schema({
     winner: {type: String},
     scores: {type: String},
     attachedFile: {type: String},
-    boardgames: {type: String}  
+    boardgame: {type: String},
 })
 
 

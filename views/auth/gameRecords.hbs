@@ -2,7 +2,7 @@
 <h2>My Game records</h2>
 
 <h3>New record</h3>
-<form action="/game-records/:_id" method="POST"> 
+<form action="/game-records/{{gameId}}" method="POST"> 
  
     <label for="date">Date: </label>
     <input type="text" name="date" id="date">
@@ -19,13 +19,13 @@
     <label for="attachedFile">Attached file: </label>
     <input type="text" name="attachedFile" id="attachedFile">
 <br>
-    <input type="hidden" name="boardgames" id="boardgames" value="{{_id}}">
-<br>
+<input type="hidden" name="boardgame" id="boardgame" value="{{gameId}}">
 <button class="button is-primary" style="margin: 10px" type="submit">Create match record</button>    
 </form>
 
 <div class="card mb-8" style="max-width: 1000px;">
   <div class="row no-gutters">
+
 {{#each records}}
 <div class="col-md-2">
 </div>
@@ -35,6 +35,10 @@
     <h5 class="card-title">{{date}}</h5>
     <p class="card-text">{{scores}}</p>
     <p class="card-text">{{winner}}</p>
+    
+    {{!-- <form action="/delete-record/{{boardgames}}/{{_id}}" method="POST">
+    <button type="submit">Delete Record</button>
+    </form> --}}
  
 </div>
 </div>
