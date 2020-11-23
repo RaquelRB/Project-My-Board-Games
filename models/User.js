@@ -4,7 +4,7 @@ const Schema = mongoose.Schema
 const userSchema = new Schema({
     username: {type: String, required: true},
     password: {type: String, required: true},
-    boardgames: [{type: Schema.ObjectId, ref: 'BoardGame'}]
+    boardgame_id: [{type: Schema.Types.ObjectId, ref: 'BoardGame'}]
 })
 
 

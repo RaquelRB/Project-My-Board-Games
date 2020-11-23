@@ -5,6 +5,7 @@ const boardgameSchema = new Schema({
     name: {type: String},
     image_url: {type: String},
     description: {type: String},
+    min_players: {type: Number},
     max_players: {type: Number},
     min_playtime: {type: Number},
     max_playtime: {type: Number},
@@ -12,8 +13,8 @@ const boardgameSchema = new Schema({
     price: {type: String},
     rules_url: {type: String},
     id: {type: String},
-    owner: {type: Schema.Types.ObjectId},
-    records: {type: [Object]}        
+    records_id: [{type: Schema.Types.ObjectId, ref: 'Record'}],
+    owner: {type: Schema.Types.ObjectId, ref: 'User'}
 })
 
 

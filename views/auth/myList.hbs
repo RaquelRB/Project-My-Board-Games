@@ -5,24 +5,23 @@
 
 <div class="card mb-8" style="max-width: 1000px;">
   <div class="row no-gutters">
-{{#each boardgames}}
+
+{{#each boardgame_id}}
 <div class="col-md-2">
 <img src="{{image_url}}" alt="{{name}}" class="card-img img-list">
+<form action="/delete-game/{{_id}}" method="POST">
+    <button type="submit">Delete</button>
+</form>
 </div>
 
 <div class="col-md-10">
   <div class="card-body">
-    <h5 class="card-title">{{name}}</h5>
+    <h5 class="card-title">{{this.name}}</h5>
     <p class="card-text">Players: {{min_players}} - {{max_players}}</p>
     <p class="card-text">Play time: {{min_playtime}} - {{max_playtime}}</p>
     <p class="card-text">Min age: {{min_age}}</p>
 
-
-<form action="/delete-game/{{_id}}" method="POST">
-    <button type="submit">Delete</button>
-</form>
-
-    <a href="/game-records/{{_id}}">View records</a>
+<a href="/game-records/{{_id}}">View records</a>
 
 </div>
 </div>

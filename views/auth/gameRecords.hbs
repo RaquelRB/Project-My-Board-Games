@@ -19,24 +19,28 @@
     <label for="attachedFile">Attached file: </label>
     <input type="text" name="attachedFile" id="attachedFile">
 <br>
-<input type="hidden" name="boardgame" id="boardgame" value="{{gameId}}">
 <button class="button is-primary" style="margin: 10px" type="submit">Create match record</button>    
 </form>
+
 
 <div class="card mb-8" style="max-width: 1000px;">
   <div class="row no-gutters">
 
-{{#each records}}
+{{#each records_id}}
 <div class="col-md-2">
 </div>
 
 <div class="col-md-10">
   <div class="card-body">
-    <h5 class="card-title">{{date}}</h5>
-    <p class="card-text">{{scores}}</p>
+    <h5 class="card-title">{{this.date}}</h5>
+    <p class="card-text">{{players}}</p>
     <p class="card-text">{{winner}}</p>
+    <p class="card-text">{{scores}}</p>
+    <p class="card-text">{{attachedFile}}</p>
 
-    <form action="/delete-record/{{boardgame}}/{{_id}}" method="POST">
+    {{!-- <button><a href="/edit-record/{{boardgame}}/{{_id}}">Edit Record</a></button> --}}
+
+    <form action="/delete-record/{{linkedGame}}/{{_id}}" method="POST">
     <button type="submit">Delete Record</button>
     </form>
  
@@ -48,3 +52,25 @@
 
 </div>
 </div>
+
+{{!-- <h3>Edit record</h3>
+<form action="/edit-record/{{boardgame}}/{{_id}}" method="POST"> 
+ 
+    <label for="date">Date: </label>
+    <input type="text" name="date" id="date" value="{{date}}">
+<br>
+    <label for="player">Player names: </label>
+    <input type="text" name="player" id="player" value="{{players}}">
+<br>
+    <label for="winner">Winner: </label>
+    <input type="text" name="winner" id="winner" value="{{winner}}">
+<br>
+    <label for="scores">Scores: </label>
+    <input type="text" name="scores" id="scores" value="{{scores}}">
+<br>
+    <label for="attachedFile">Attached file: </label>
+    <input type="text" name="attachedFile" id="attachedFile" value="{{attachedFile}}">
+<br>
+<input type="hidden" name="boardgame" id="boardgame" value="{{boardgame}}">
+<button class="button is-primary" style="margin: 10px" type="submit">Edit match record</button>    
+</form> --}}

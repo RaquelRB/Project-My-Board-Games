@@ -1,0 +1,25 @@
+<div class="margin-top margin-left">
+<h2>My Game records</h2>
+
+<h3>Edit record</h3>
+<form action="/edit-record/{{boardgame}}/{{_id}}" method="POST"> 
+ 
+    <label for="date">Date: </label>
+    <input type="text" name="date" id="date" value="{{date}}">
+<br>
+    <label for="players">Player names: </label>
+    <input type="text" name="players" id="players" value="{{players}}">
+<br>
+    <label for="winner">Winner: </label>
+    <input type="text" name="winner" id="winner" value="{{winner}}">
+<br>
+    <label for="scores">Scores: </label>
+    <input type="text" name="scores" id="scores" value="{{scores}}">
+<br>
+    <label for="attachedFile">Attached file: </label>
+    <input type="text" name="attachedFile" id="attachedFile" value="{{attachedFile}}">
+<br>
+<input type="hidden" name="boardgame" id="boardgame" value="{{gameId}}">
+<button class="button is-primary" style="margin: 10px" type="submit">Edit match record</button>    
+</form>
+

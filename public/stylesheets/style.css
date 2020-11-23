@@ -1,5 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap");
 body {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+  font: 14px 'Roboto', sans-serif; }
+
+.game-container h3 {
+  text-align: center; }
 
 .find-nav {
   margin-top: 50px; }

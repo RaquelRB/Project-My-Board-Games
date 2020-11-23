@@ -10,12 +10,14 @@ const renderGames = (game) => {
 
   // -----Create elements for each block-----
   const name = document.createElement('h3')
+  const hr = document.createElement('hr')
   const image = document.createElement('img')
   const players = document.createElement('p')
   const time = document.createElement('p')
   const buttonDetails = document.createElement('button')
 
   document.getElementById(`${game.id}`).append(name)
+  document.getElementById(`${game.id}`).append(hr)
   document.getElementById(`${game.id}`).append(image)
   document.getElementById(`${game.id}`).append(players)
   document.getElementById(`${game.id}`).append(time)
@@ -29,6 +31,7 @@ const renderGames = (game) => {
   time.innerText = `Play time: ${game.min_playtime}-${game.max_playtime}`
   buttonDetails.setAttribute('type', 'submit')
   buttonDetails.setAttribute('class', `${game.id}`)
+  // buttonDetails.setAttribute('class', 'btn-secondary')
   buttonDetails.innerText = 'Game details'
 
   // -----Configurate button for each game-----
@@ -72,10 +75,10 @@ const renderGames = (game) => {
           document.getElementById('name').value = uniqueGame.name
           document.getElementById('image_url').value = uniqueGame.image_url
           document.getElementById('description').value = uniqueGame.description
-          document.getElementById('min_players').value = uniqueGame.min_age
-          document.getElementById('max_players').value = uniqueGame.min_age
-          document.getElementById('min_playtime').value = uniqueGame.min_age
-          document.getElementById('max_playtime').value = uniqueGame.min_age
+          document.getElementById('min_players').value = uniqueGame.min_players
+          document.getElementById('max_players').value = uniqueGame.max_players
+          document.getElementById('min_playtime').value = uniqueGame.min_playtime
+          document.getElementById('max_playtime').value = uniqueGame.max_playtime
           document.getElementById('min_age').value = uniqueGame.min_age
           document.getElementById('price').value = uniqueGame.price
           document.getElementById('rules_url').value = uniqueGame.rules_url
