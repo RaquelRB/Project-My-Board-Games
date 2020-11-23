@@ -13,7 +13,10 @@
 <div class="col-md-10">
   <div class="card-body">
     <h5 class="card-title">{{name}}</h5>
-    <p class="card-text">{{min_players}}</p>
+    <p class="card-text">Players: {{min_players}} - {{max_players}}</p>
+    <p class="card-text">Play time: {{min_playtime}} - {{max_playtime}}</p>
+    <p class="card-text">Min age: {{min_age}}</p>
+
 
 <form action="/delete-game/{{_id}}" method="POST">
     <button type="submit">Delete</button>

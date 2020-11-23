@@ -67,10 +67,10 @@ router.get('/mylist', ensureLogin.ensureLoggedIn(), (req, res)=>{
 })
 
 router.post('/mylist', ensureLogin.ensureLoggedIn(), (req, res)=>{
-  const {name, image_url, description, min_age, price, rules_url,id} = req.body
+  const {name, image_url, description, min_players, max_players, min_playtime, max_playtime, min_age, price, rules_url,id} = req.body
   const userId = req.user._id
 
-  BoardGame.create({name, image_url, description, min_age, price, rules_url,id,owner: userId})
+  BoardGame.create({name, image_url, description, min_players, max_players, min_playtime, max_playtime, min_age, price, rules_url,id,owner: userId})
   .then((createdGame)=>{
     User.findByIdAndUpdate(userId, {$push: {boardgames: createdGame._id}})
     .then(()=>{
@@ -122,6 +122,25 @@ router.post('/game-records/:_id', (req,res,next)=>{
 })
 
 
+router.post('/delete-record/:gameId/:recordId', (req,res,next)=>{
+  const {gameId, recordId} = req.params
+
+  BoardGame.findById(gameId)
+  .then((result)=>{
+
+    const resultRecordsArr = [...result.records]
+
+      const indexRecord = resultRecordsArr.indexOf(recordId)
+      resultRecordsArr.splice(indexRecord, 1)
+
+      BoardGame.updateOne({_id: gameId}, {records: resultRecordsArr})
+      .then((result)=>{
+
+        res.redirect(`/game-records/${gameId}`)
+      })
+  })
+  .catch((err)=>console.log(err))
+})
 
 
 module.exports = router;
