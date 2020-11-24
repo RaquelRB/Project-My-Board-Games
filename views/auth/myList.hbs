@@ -1,34 +1,34 @@
+<div class="container margin-top game-list">
+  <h2>My board games list</h2>
 
-<div class="container margin-top">
-<h2>This is my board games list</h2>
+  <div class="card mb-8" style="max-width: 1000px;">
+    <div class="row no-gutters game-list-properties">
+      
+      {{#each boardgame_id}}
+      <div class="col-md-2 image-block">
+        <img src="{{image_url}}" alt="{{name}}" class="card-img">
 
+      </div>
 
-<div class="card mb-8" style="max-width: 1000px;">
-  <div class="row no-gutters">
+      <div class="col-md-9">
+        <div class="card-body">
+          <h5 class="card-title">{{name}}</h5>
+          <p class="card-text">Players: {{min_players}} - {{max_players}}</p>
+          <p class="card-text">Play time: {{min_playtime}} - {{max_playtime}}</p>
+          <p class="card-text">Min age: {{min_age}}</p>
 
-{{#each boardgame_id}}
-<div class="col-md-2">
-<img src="{{image_url}}" alt="{{name}}" class="card-img img-list">
-<form action="/delete-game/{{_id}}" method="POST">
-    <button type="submit">Delete</button>
-</form>
-</div>
+          <a href="/game-records/{{_id}}">View records</a>
 
-<div class="col-md-10">
-  <div class="card-body">
-    <h5 class="card-title">{{this.name}}</h5>
-    <p class="card-text">Players: {{min_players}} - {{max_players}}</p>
-    <p class="card-text">Play time: {{min_playtime}} - {{max_playtime}}</p>
-    <p class="card-text">Min age: {{min_age}}</p>
+        </div>
+      </div>
+      <div class="col-md-1 delete-block">
+        <form action="/delete-game/{{_id}}" method="POST">
+          <button type="submit" class="button-delete-list">Delete</button>
+        </form>
+      </div>
 
-<a href="/game-records/{{_id}}">View records</a>
+      {{/each}}
 
-</div>
-</div>
-
-
-{{/each}}
-
-</div>
-</div>
+    </div>
+  </div>
 </div>

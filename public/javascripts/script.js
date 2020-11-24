@@ -11,17 +11,17 @@ const renderGames = (game) => {
   // -----Create elements for each block-----
   const name = document.createElement('h3')
   const hr = document.createElement('hr')
-  const image = document.createElement('img')
   const players = document.createElement('p')
   const time = document.createElement('p')
   const buttonDetails = document.createElement('button')
+  const image = document.createElement('img')
 
   document.getElementById(`${game.id}`).append(name)
   document.getElementById(`${game.id}`).append(hr)
-  document.getElementById(`${game.id}`).append(image)
   document.getElementById(`${game.id}`).append(players)
   document.getElementById(`${game.id}`).append(time)
   document.getElementById(`${game.id}`).append(buttonDetails)
+  document.getElementById(`${game.id}`).append(image)
 
   // -----Include content for each element-----
   name.innerText = game.name

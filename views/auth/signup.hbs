@@ -1,20 +1,20 @@
-
 <div class="container margin-top">
 <div class="row justify-content-center">
-<form action="/signup" method="POST">
+<form class="text-center" action="/signup" method="POST">
+  <h1 class="h4 mb-3 font-weight-normal">Please sign up</h1>
+  <label class="sr-only" for="username">Username: </label>
+  <input class="form-control" type="text" id="username" name="username" placeholder="Username">
 
-  <label for="username">Username: </label>
-  <input type="text" id="username" name="username">
+  <label class="sr-only" for="password">Password: </label>
+  <input class="form-control" type="password" id="password" name="password" placeholder="Password">
 
 
-  <label for="password">Password: </label>
-  <input type="password" id="password" name="password">
-
-  <button type="submit" class="btn btn-dark">Create user</button>
-  
-{{#if errorMessage}}
+  {{#if errorMessage}}
 <p>{{errorMessage}}</p>
 {{/if}}
+
+<br>
+  <button type="submit" class="btn btn-lg btn-dark btn-block">Sign up</button>
 
 </form>
 </div>

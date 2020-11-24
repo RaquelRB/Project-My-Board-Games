@@ -1,10 +1,9 @@
 
 <nav class="navbar navbar-light bg-light find-nav">
-  <a class="navbar-brand">Find game</a>
 
-  <input class="form-control mr-sm-2" type="text" placeholder="Search" id="search-game-input">
+  <input class="form-control mr-sm-2" type="text" placeholder="Gameboard name" id="search-game-input">
 
-  <button class="btn btn-outline-success my-2 my-sm-0" id="search-game-button">Search</button>
+  <button class="btn btn-outline-dark my-2 my-sm-0" id="search-game-button">Search</button>
 
 </nav>
 
@@ -14,11 +13,12 @@
   </div>
 </div>
 
-<div class="container" id="unique-container">
+<div class="container unique-container" id="unique-container">
 <div class="card mb-8" id="game-details" style="max-width: 1000px;">
   <div class="row no-gutters">
     <div class="col-md-4">
       <img src="" class="card-img" alt="">
+      
       <form action="/mylist" method="POST" id="game-form">
 
         <input type="hidden" name="name" id="name" value="">
@@ -32,6 +32,8 @@
         <input type="hidden" name="price" id="price" value="">
         <input type="hidden" name="rules_url" id="rules_url" value="">
         <input type="hidden" name="id" id="id" value="">
+        <br>
+
         <button type="submit">Add to my list</button>
       </form>
     </div>

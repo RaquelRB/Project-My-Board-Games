@@ -1,40 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap');
 
 body {
-  font: 14px 'Roboto', sans-serif;
-}
-
-.game-container h3{
-  text-align: center;
+  font: 13px 'Roboto', sans-serif;
 }
 
 .find-nav{
-  // margin: 40px;
   margin-top: 50px;
 }
 
 a {
   color: #00B7FF;
-}
-
-img {
-  width: 200px
-}
-
-.row > .col {
-  margin: 10px;
-  padding: 10px;
-  border: 1px solid grayscale($color: #666666);
-}
-
-.row > .col img{
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.img-list{
-  width: 100px;
 }
 
 .margin-top {
@@ -45,5 +20,120 @@ img {
   margin-left: 40px;
 }
 
+.margin-right{
+  margin-right: 40px
+}
 
 
+// List of all games
+
+.row > .col {
+  margin: 10px;
+  padding: 10px;
+  border: 2px solid grayscale($color: #666666);
+  border-radius: 10px;
+  line-height: 0.5rem;
+}
+
+.row > .col h3{
+  text-align: center;
+  font-size: 18px;
+  background-color:  #343A40;
+  color: white;
+  padding: 7px;
+  border-radius: 10px;
+}
+
+.row > .col img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 15px;
+  width: 150px;
+}
+
+.row > .col button{
+  background-color: white;
+  border: 0px;
+  color: #00B7FF;
+  align-self: center;
+  padding: 0px;
+  margin-bottom: 20px;
+}
+
+// Game Details
+.unique-container img{
+  width: 150px
+}
+
+// User list
+.game-list {
+  background-color: #343A40;
+  color: white;
+  padding: 10px;
+}
+
+.game-list h2{
+  text-align: center;
+}
+
+.game-list-properties{
+  line-height: 0.5rem;
+  color: black
+}
+
+.image-block{
+  align-self: center;
+  width: 120px
+}
+
+.delete-block{
+  padding-top: 15px;
+}
+
+.button-delete-list{
+  background-color: #343A40;
+  color: white;
+  padding: 7px;
+  margin-top: 15px
+}
+
+//Game records
+
+//--Form
+.game-records h2{
+  text-align: center;
+}
+
+.game-records img{
+  height: 200px
+}
+
+.new-record button{
+  background-color: #343A40;
+  color: white;
+  padding: 7px;
+  margin-top: 15px
+}
+
+//--List
+
+.records-list{
+  background-color: #343A40;
+  border-radius: 10px;
+  margin-top: 40px
+}
+
+.records-list .card{
+  margin: 5px
+}
+
+.records-list h5{
+  background-color: #343A40;
+  color: white;
+  padding: 5px;
+}
+
+.records-list button{
+  margin-top: 18px
+}
