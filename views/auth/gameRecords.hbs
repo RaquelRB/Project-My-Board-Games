@@ -10,8 +10,8 @@
             <label for="date">Date: </label>
             <input type="text" name="date" id="date">
             <br>
-            <label for="player">Player names: </label>
-            <input type="text" name="player" id="player">
+            <label for="players">Player names: </label>
+            <input type="text" name="players" id="players">
             <br>
             <label for="winner">Winner: </label>
             <input type="text" name="winner" id="winner">
@@ -39,7 +39,7 @@
                     <p class="card-text">Winner: {{winner}}</p>
                     <p class="card-text">Scores: {{scores}}</p>
                     <p class="card-text">attachedFile: {{attachedFile}}</p>
-                    {{!-- <button><a href="/edit-record/{{linkedGame}}/{{_id}}">Edit Record</a></button> --}}
+                    <button><a href="/edit-record/{{_id}}">Edit Record</a></button>
                     <form action="/delete-record/{{linkedGame}}/{{_id}}" method="POST">
                     <button type="submit">Delete Record</button>
                 </form>

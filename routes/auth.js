@@ -150,10 +150,15 @@ router.post('/delete-record/:gameId/:recordId', (req, res, next) => {
   .catch((err)=>console.log(err))
 })
 
-router.get('/edit-record/:gameId/:recordId', (req,res,next)=>{
-  // const gameId = req.params.gameId
-  // const recordId = req.params.recordId
 
+router.get('/edit-record/:_id', (req,res,next)=>{
+  // const gameId = req.params.gameId
+  const recordId = req.params._id
+
+  Record.findById(recordId)
+  .then((result)=>{
+    res.render('auth/editRecord', result)
+  })
   // BoardGame.findById(gameId)
   // .populate('records_id')
   // .then((result)=>{
@@ -171,33 +176,37 @@ router.get('/edit-record/:gameId/:recordId', (req,res,next)=>{
   // .catch((err)=> console.log(err))
 })
 
+router.post('/edit-record/:_id', (req, res, next) => {
+  const {date, players, winner, scores, attachedFile, linkedGame} = req.body
+  const recordId = req.params._id
 
-router.post('/edit-record/:gameId/:recordId', (req, res, next) => {
-  // const {date, players, winner, scores, attachedFile} = req.body
-  // const { gameId, recordId } = req.params
+  Record.create({date, players, winner, scores, attachedFile, linkedGame})
+  .then((newRecordCreated)=>{
+    BoardGame.findById(linkedGame)
+    .populate('records_id')
+    .then((result)=>{
+        const newRecordArr = []
 
-  //   BoardGame.findById(gameId)
-  //   .populate('records_id')
-  //   .then((result)=>{
-      
-  //     const oneRecord = {date, players, winner, scores, attachedFile}
-  
-  //     result.records_id.forEach((item)=>{
-  //       if (item._id=recordId){
-  //         return findRecord.push(item)
-  //       }
-  //     })
-  
-  //     BoardGame.updateOne({_id: gameId}, {records_id: newArr})
-  //     .then((result)=>{
-  //       Record.findByIdAndDelete(recordId)
-  //       .then(()=>{
-  //         res.redirect(`/game-records/${gameId}`)
-  //       })
-  //     })
-  //   })
-  //   .catch((err)=>console.log(err))
-})
+        result.records_id.forEach((item)=>{
+          if (item._id!=recordId){
+            return newRecordArr.push(item)
+          }
+        })
+    
+        newRecordArr.push(newRecordCreated)
+        console.log(newRecordArr)
+    
+        BoardGame.updateOne({_id: linkedGame}, {records_id: newRecordArr})
+        .then(()=>{
+          Record.findByIdAndDelete(recordId)
+          .then(()=>{
+            res.redirect(`/game-records/${linkedGame}`)
+          })
+        })
+      })
+      .catch((err)=>console.log(err))
+    })
+  })
 
 
 module.exports = router;
