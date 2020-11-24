@@ -31,7 +31,6 @@ const renderGames = (game) => {
   time.innerText = `Play time: ${game.min_playtime}-${game.max_playtime}`
   buttonDetails.setAttribute('type', 'submit')
   buttonDetails.setAttribute('class', `${game.id}`)
-  // buttonDetails.setAttribute('class', 'btn-secondary')
   buttonDetails.innerText = 'Game details'
 
   // -----Configurate button for each game-----
@@ -84,6 +83,9 @@ const renderGames = (game) => {
           document.getElementById('rules_url').value = uniqueGame.rules_url
           document.getElementById('id').value = uniqueGame.id
 
+
+          document.getElementById('button-add').innerHTML = "Add to my list"
+
         })
         .catch((err) => {
           console.log(err)
@@ -101,11 +103,9 @@ document.addEventListener('DOMContentLoaded', () => {
     axios.get(`${URL}search?client_id=HtEvNIGWc8`)
       .then((result) => {
         result.data.games.forEach((game) => {
-          
           const divUniqueGame = document.getElementById('unique-container')
           divUniqueGame.style.display = 'none'
           renderGames(game)
-
         })
       })
       .catch((err) => {

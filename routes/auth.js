@@ -6,14 +6,14 @@ const User = require('../models/User')
 const BoardGame = require('../models/BoardGame')
 const Record = require('../models/Record')
 const ensureLogin = require('connect-ensure-login');
-
-
+const uploadCloud = require('../config/cloudinary.js');
 
 router.get('/signup', (req, res, next) => {
   res.render('auth/signup')
 })
 
 router.post('/signup', (req, res, next) => {
+  
   const { username, password } = req.body
 
   if (username === '' || password === '') {
@@ -54,7 +54,15 @@ router.get('/logout', (req, res) => {
   res.redirect('/')
 })
 
-router.get('/mylist/', ensureLogin.ensureLoggedIn(), (req, res) => {
+const checkForAuthentification = (req,res,next)=>{
+  if(req.isAuthenticated()){
+    return next()
+  } else {
+    res.redirect('/login')
+  }
+}
+
+router.get('/mylist/', checkForAuthentification, (req, res) => {
   const user = req.user._id
 
   User.findOne({_id: user})
@@ -65,7 +73,7 @@ router.get('/mylist/', ensureLogin.ensureLoggedIn(), (req, res) => {
     .catch((err)=>console.log(err))
 })
 
-router.post('/mylist', ensureLogin.ensureLoggedIn(), (req, res) => {
+router.post('/mylist', (req, res) => {
   const { name, image_url, description, min_players, max_players, min_playtime, max_playtime, min_age, price, rules_url, id} = req.body
   const userId = req.user._id
 
@@ -79,7 +87,6 @@ router.post('/mylist', ensureLogin.ensureLoggedIn(), (req, res) => {
     .catch((err) => res.send(err))
 })
 
-
 router.post('/delete-game/:_id', ensureLogin.ensureLoggedIn(), (req, res, next) => {
   const gameId = req.params._id
   const userId = req.user._id
@@ -87,13 +94,17 @@ router.post('/delete-game/:_id', ensureLogin.ensureLoggedIn(), (req, res, next) 
   BoardGame.findByIdAndDelete(gameId)
     .then(() => {
       User.findByIdAndUpdate(userId, {$pull: {boardgame_id: gameId}})
-      .then(()=>res.redirect('/mylist'))
+      .then(()=>{
+        Record.deleteMany({linkedGame: gameId})
+        .then(()=>{
+          res.redirect('/mylist')
+        })
+      })
     })
     .catch((err) => console.log(err))
-  
 })
 
-router.get('/game-records/:_id', (req, res, next) => {
+router.get('/game-records/:_id', checkForAuthentification, (req, res, next) => {
   const gameId = req.params._id
 
   BoardGame.findById(gameId)
@@ -107,11 +118,13 @@ router.get('/game-records/:_id', (req, res, next) => {
     .catch((err) => console.log(err))
 })
 
-router.post('/game-records/:_id', (req, res, next) => {
+router.post('/game-records/:_id', uploadCloud.single('attachedFile_path'), (req, res, next) => {
   const gameId = req.params._id
-  const { date, players, winner, scores, attachedFile} = req.body
-
-  Record.create({ date, players, winner, scores, attachedFile, linkedGame: gameId})
+  const { date, players, winner, scores} = req.body
+  const attachedFile_name = req.file.originalname
+  const attachedFile_path = req.file.path
+ 
+  Record.create({ date, players, winner, scores, attachedFile_name, attachedFile_path, linkedGame: gameId})
     .then((createdRecord) => {
       BoardGame.findByIdAndUpdate(gameId, { $push: { records_id: createdRecord._id} })
         .then((result) => {
@@ -122,7 +135,6 @@ router.post('/game-records/:_id', (req, res, next) => {
       console.log(err)
     })
 })
-
 
 router.post('/delete-record/:gameId/:recordId', (req, res, next) => {
   const {gameId, recordId} = req.params
@@ -151,7 +163,7 @@ router.post('/delete-record/:gameId/:recordId', (req, res, next) => {
 })
 
 
-router.get('/edit-record/:_id', (req,res,next)=>{
+router.get('/edit-record/:_id', checkForAuthentification, (req,res,next)=>{
   // const gameId = req.params.gameId
   const recordId = req.params._id
 

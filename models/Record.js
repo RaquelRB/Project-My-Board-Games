@@ -6,7 +6,8 @@ const recordSchema = new Schema({
     players: {type: String},
     winner: {type: String},
     scores: {type: String},
-    attachedFile: {type: String},
+    attachedFile_name: {type: String},
+    attachedFile_path: {type: String},
     linkedGame: {type: Schema.Types.ObjectId, ref: 'Boardgame'}
 })
 

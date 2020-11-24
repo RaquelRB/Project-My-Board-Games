@@ -1,12 +1,13 @@
 <div class="margin-top margin-left margin-right game-records">
 
     <h2>My Game records: {{name}}</h2>
-    
+
     <hr>
     <div class="new-record row justify-content-between">
-        
-        <form action="/game-records/{{gameId}}" method="POST">
-<h4>New record</h4>
+
+        <form action="/game-records/{{gameId}}" method="POST" enctype="multipart/form-data">
+
+            <h4>New record</h4>
             <label for="date">Date: </label>
             <input type="text" name="date" id="date">
             <br>
@@ -19,14 +20,15 @@
             <label for="scores">Scores: </label>
             <input type="text" name="scores" id="scores">
             <br>
-            <label for="attachedFile">Attached file: </label>
-            <input type="text" name="attachedFile" id="attachedFile">
+
+            <label for="attachedFile_path">Attached file: </label>
+            <input type="file" name="attachedFile_path" id="attachedFile_path">
             <br>
             <button class="button is-primary" style="margin: 10px" type="submit">Create match record</button>
         </form>
         <img src="{{image_url}}" alt="{{name}}">
     </div>
-    
+
 
     <div class="container">
         <div class="row records-list">
@@ -38,11 +40,28 @@
                     <p class="card-text">Players: {{players}}</p>
                     <p class="card-text">Winner: {{winner}}</p>
                     <p class="card-text">Scores: {{scores}}</p>
-                    <p class="card-text">attachedFile: {{attachedFile}}</p>
+
+                    <button id="containerImg" type="button" class="btn" data-toggle="modal" data-target="#exampleModal">
+                        <img src="{{attachedFile_path}}" alt="scoresImage" id="scoresImg">
+                    </button>
+
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <img src="{{attachedFile_path}}" alt="scoresImage" id="scoresImgBig">
+                                    <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <button><a href="/edit-record/{{_id}}">Edit Record</a></button>
                     <form action="/delete-record/{{linkedGame}}/{{_id}}" method="POST">
-                    <button type="submit">Delete Record</button>
-                </form>
+                        <button type="submit">Delete Record</button>
+                    </form>
                 </div>
             </div>
             {{/each}}
