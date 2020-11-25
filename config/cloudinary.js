@@ -11,8 +11,8 @@ const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
       folder: 'name-folder',
-      format: async (req, file) => 'jpg'
-  }
+      format: async (req, file) => 'jpg',
+}
 })
 
 const uploadCloud = multer({ storage: storage })
