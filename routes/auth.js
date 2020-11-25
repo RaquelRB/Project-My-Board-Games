@@ -123,8 +123,6 @@ router.post('/game-records/:_id', uploadCloud.single('attachedFile_path'), (req,
   const gameId = req.params._id
   const { date, players, winner, scores} = req.body
 
-  console.log(req.file)
-
   const attachedFile_name = req.file ? req.file.originalname : "example.jpg"
   const attachedFile_path = req.file ? req.file.path : "/images/example.jpg"
   
@@ -178,41 +176,39 @@ router.get('/edit-record/:_id', checkForAuthentification, (req,res,next)=>{
 })
 
 router.post('/edit-record/:_id', uploadCloud.single('attachedFile_path'), (req, res, next) => {
-  
-  console.log(req.body)
 
-  // let {date, players, winner, scores, linkedGame, attachedFile_name, attachedFile_path} = req.body
-  // const recordId = req.params._id
+  let {date, players, winner, scores, linkedGame, att_name, att_path} = req.body
+  const recordId = req.params._id
 
-  // attachedFile_name = req.file ? req.file.originalname : attachedFile_name
-  // attachedFile_path = req.file ? req.file.path : attachedFile_path
+  const attachedFile_name = req.file ? req.file.originalname : att_name
+  const attachedFile_path = req.file ? req.file.path : att_path
 
-  // Record.create({date, players, winner, scores, attachedFile_name, attachedFile_path, linkedGame})
-  // .then((newRecordCreated)=>{
-  //   BoardGame.findById(linkedGame)
-  //   .populate('records_id')
-  //   .then((result)=>{
-  //       const newRecordArr = []
 
-  //       result.records_id.forEach((item)=>{
-  //         if (item._id!=recordId){
-  //           return newRecordArr.push(item)
-  //         }
-  //       })
+  Record.create({date, players, winner, scores, attachedFile_name, attachedFile_path, linkedGame})
+  .then((newRecordCreated)=>{
+    BoardGame.findById(linkedGame)
+    .populate('records_id')
+    .then((result)=>{
+        const newRecordArr = []
+
+        result.records_id.forEach((item)=>{
+          if (item._id!=recordId){
+            return newRecordArr.push(item)
+          }
+        })
     
-  //       newRecordArr.push(newRecordCreated)
-  //       console.log(newRecordArr)
+        newRecordArr.push(newRecordCreated)
     
-  //       BoardGame.updateOne({_id: linkedGame}, {records_id: newRecordArr})
-  //       .then((result)=>{
-  //         Record.findByIdAndDelete(recordId)
-  //         .then(()=>{
-  //           res.redirect(`/game-records/${linkedGame}`)
-  //         })
-  //       })
-  //     })
-  //     .catch((err)=>console.log(err))
-  //   })
+        BoardGame.updateOne({_id: linkedGame}, {records_id: newRecordArr})
+        .then((result)=>{
+          Record.findByIdAndDelete(recordId)
+          .then(()=>{
+            res.redirect(`/game-records/${linkedGame}`)
+          })
+        })
+      })
+      .catch((err)=>console.log(err))
+    })
   })
 
 

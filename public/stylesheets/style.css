@@ -87,14 +87,6 @@ a {
   padding: 7px;
   margin-top: 15px; }
 
-#scoresImg {
-  width: 200px;
-  height: 200px; }
-
-#scoresImgBig {
-  width: 500px;
-  height: 500px; }
-
 #containerImg {
   margin: 0px; }
 
@@ -102,6 +94,10 @@ a {
   background-color: transparent;
   border: 0px;
   width: 200px; }
+
+#scoresImg {
+  width: 15rem;
+  height: 15rem; }
 
 .records-list {
   background-color: #343A40;
