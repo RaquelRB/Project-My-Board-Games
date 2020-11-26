@@ -12,14 +12,14 @@
     <label for="winner">Winner: </label>
     <input type="text" name="winner" id="winner" value="{{result.winner}}">
 <br>
-    <label for="scores">Scores: </label>
+    <label for="scores">Comments: </label>
     <input type="text" name="scores" id="scores" value="{{result.scores}}">
 <br>
 
-    <label for="attachedFile_path">Attached file: </label>
     <input type="hidden" name="att_name" id="att_name" value="{{result.attachedFile_name}}">
     <input type="hidden" name="att_path" id="att_path" value="{{result.attachedFile_path}}">
 
+    <label for="attachedFile_path">Attached file: </label>
     <input type="file" name="attachedFile_path" id="attachedFile_path">
 
 <br>
@@ -27,6 +27,4 @@
 
 <button class="button is-primary" style="margin: 10px" type="submit">Edit match record</button>    
 </form>
-
-   {{!-- <input type="text" style="display: none;" name="pathLink" value="{{result.attachedFile_path}}"> --}}
 

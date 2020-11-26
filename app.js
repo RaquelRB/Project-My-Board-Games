@@ -67,8 +67,6 @@ passport.use(new LocalStrategy({ passReqToCallback: true }, (req, username, pass
 app.use(passport.initialize()) //Esto tiene que estar después de la estrategia
 app.use(passport.session())
 
-
-
 // Middleware Setup
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -82,15 +80,11 @@ app.use(require('node-sass-middleware')({
   dest: path.join(__dirname, 'public'),
   sourceMap: true
 }));
-      
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
-
-//AXIOS
-
 
 
 const index = require('./routes/index');

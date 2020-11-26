@@ -123,8 +123,8 @@ router.post('/game-records/:_id', uploadCloud.single('attachedFile_path'), (req,
   const gameId = req.params._id
   const { date, players, winner, scores} = req.body
 
-  const attachedFile_name = req.file ? req.file.originalname : "example.jpg"
-  const attachedFile_path = req.file ? req.file.path : "/images/example.jpg"
+  const attachedFile_name = req.file ? req.file.originalname : "default.jpg"
+  const attachedFile_path = req.file ? req.file.path : "/images/default.jpg"
   
   Record.create({ date, players, winner, scores, attachedFile_name, attachedFile_path, linkedGame: gameId})
     .then((createdRecord) => {
@@ -182,7 +182,6 @@ router.post('/edit-record/:_id', uploadCloud.single('attachedFile_path'), (req, 
 
   const attachedFile_name = req.file ? req.file.originalname : att_name
   const attachedFile_path = req.file ? req.file.path : att_path
-
 
   Record.create({date, players, winner, scores, attachedFile_name, attachedFile_path, linkedGame})
   .then((newRecordCreated)=>{

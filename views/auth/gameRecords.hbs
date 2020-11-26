@@ -34,35 +34,20 @@
         <div class="row records-list">
             {{#each records_id}}
 
-            <div class="card" style="width: 18rem">
+            <div class="card" style="width: 18rem; padding-bottom: 10px">
                 <div class="card-body">
                     <h5 class="card-title">{{date}}</h5>
                     <p class="card-text">Players: {{players}}</p>
                     <p class="card-text">Winner: {{winner}}</p>
                     <p class="card-text">Scores: {{scores}}</p>
-
-                    <button id="containerImg" type="button" class="btn" data-toggle="modal" data-target="#exampleModal">
-                        <img src="{{attachedFile_path}}" alt="scoresImage" id="scoresImg">
-                    </button>
-
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-body">
-                                    <img src="{{attachedFile_path}}" alt="scoreImg" id="scoresImgBig">
-                                    <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <button><a href="/edit-record/{{_id}}">Edit Record</a></button>
-                    <form action="/delete-record/{{linkedGame}}/{{_id}}" method="POST">
-                        <button type="submit">Delete Record</button>
-                    </form>
+                    <a href="/edit-record/{{_id}}">Edit Record</a>
                 </div>
+                <div class="record-card">
+                <img src="{{attachedFile_path}}" alt="{{attachedFile_name}}" class="card-img img-fluid" id="attachedImg">
+                </div>
+                    <form action="/delete-record/{{linkedGame}}/{{_id}}" method="POST">
+                        <button type="submit" class="btn-secondary d-block mx-auto">Delete Record</button>
+                    </form>
             </div>
             {{/each}}
         </div>
