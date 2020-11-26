@@ -3,6 +3,7 @@
     <h2>My Game records: {{name}}</h2>
 
     <hr>
+    <div class="container">
     <div class="new-record row justify-content-between">
 
         <form action="/game-records/{{gameId}}" method="POST" enctype="multipart/form-data">
@@ -28,7 +29,7 @@
         </form>
         <img src="{{image_url}}" alt="{{name}}">
     </div>
-
+    </div>
 
     <div class="container">
         <div class="row records-list">

@@ -62,8 +62,20 @@ a {
 }
 
 // Game Details
+.unique-container{
+  margin-top: 20px;
+}
+
 .unique-container img{
-  width: 150px
+  width: 80%;
+  margin-top: 18px;
+}
+
+#button-add {
+  background-color: #343A40;
+  color: white;
+  padding: 7px;
+  margin-top: 15px
 }
 
 // User list
@@ -71,6 +83,7 @@ a {
   background-color: #343A40;
   color: white;
   padding: 10px;
+  border-radius: 6px;
 }
 
 .game-list h2{
@@ -79,7 +92,8 @@ a {
 
 .game-list-properties{
   line-height: 0.5rem;
-  color: black
+  color: black;
+  margin: auto;
 }
 
 .image-block{

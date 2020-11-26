@@ -74,7 +74,7 @@ router.get('/mylist/', checkForAuthentification, (req, res) => {
     .catch((err)=>console.log(err))
 })
 
-router.post('/mylist', (req, res) => {
+router.post('/mylist', checkForAuthentification, (req, res) => {
   const { name, image_url, description, min_players, max_players, min_playtime, max_playtime, min_age, price, rules_url, id} = req.body
   const userId = req.user._id
 
