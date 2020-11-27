@@ -17,6 +17,10 @@ a {
 .margin-right {
   margin-right: 40px; }
 
+.spinner-border {
+  margin-top: 100px;
+  text-align: center; }
+
 .row > .col {
   margin: 10px;
   padding: 10px;
@@ -91,6 +95,10 @@ a {
 
 .game-records img {
   height: 200px; }
+
+label {
+  display: inline-block;
+  width: 100px; }
 
 .new-record button {
   background-color: #343A40;

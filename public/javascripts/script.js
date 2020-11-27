@@ -94,14 +94,19 @@ const renderGames = (game) => {
   })
 }
 
+
 //-----VIEWERS IN WEB PAGE-----
 
 document.addEventListener('DOMContentLoaded', () => {
 
   //List of all board games
   const boardGames = () => {
+    document.querySelector('.spinner-border').style.display = 'block'
+    document.querySelector('.unique-container').style.display = 'none'
+
     axios.get(`${URL}search?client_id=HtEvNIGWc8`)
       .then((result) => {
+        document.querySelector('.spinner-border').style.display = 'none'
         result.data.games.forEach((game) => {
           const divUniqueGame = document.getElementById('unique-container')
           divUniqueGame.style.display = 'none'
