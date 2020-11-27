@@ -30,16 +30,17 @@
       <div class="navbar-nav ml-auto">
 
         {{#if user}}
+        <a class="nav-item nav-link" href="#">Welcome, {{user.username}}!</a>
         <a class="nav-item nav-link" id="log-out-button" href="/logout">Log out</a>
         {{else}}
-        <a class="nav-item nav-link" id="sign-up-button" href="/signup">Sign up</a>
         <a class="nav-item nav-link" id="log-in-button" href="/login">Log in</a>
         {{/if}}
 
       </div>
-
     </div>
   </nav>
+
+
 
   {{{body}}}
 

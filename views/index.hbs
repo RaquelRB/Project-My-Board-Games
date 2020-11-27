@@ -1,4 +1,16 @@
 
+{{#unless user}}
+
+<div class="jumbotron">
+  <h1 class="display-5">Welcome to <span class="font-italic">My Geek Board!</span></h1>
+  <p class="lead">My Geek Board allows you to create your own board game list and keep track of the plays.</p>
+  <hr class="my-2">
+  <p>If you want to try it, you just have to sign up</p>
+  <a class="btn btn-dark btn-lg" href="/signup" role="button" id="sign-up-button">Sign up</a>
+</div>
+
+{{/unless}}
+
 <nav class="navbar navbar-light bg-light find-nav">
 
   <input class="form-control mr-sm-2" type="text" placeholder="Gameboard name" id="search-game-input">

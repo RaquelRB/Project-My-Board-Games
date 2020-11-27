@@ -94,7 +94,6 @@ const renderGames = (game) => {
   })
 }
 
-
 //-----VIEWERS IN WEB PAGE-----
 
 document.addEventListener('DOMContentLoaded', () => {
